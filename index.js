@@ -5,7 +5,9 @@ casper.start('http://m.feawin.com', function() {
 });
 // listener function for requested resources
 var listener = function(resource, request) {
-    this.captureSelector('twitter.png', '#twitter-block');
+    setTimeout(function(){
+        this.captureSelector('twitter.png', '#twitter-block');
+    },2000);
 };
 
 // listening to all resources requests
