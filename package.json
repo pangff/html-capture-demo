@@ -15,7 +15,8 @@
         "url": ""
     },
     "dependencies": {
-        "pageres":"4.5.1"
+        "filenamify-url": "^1.0.0",
+        "pageres": "4.5.1"
     },
     "devDependencies": {
         "mocha": "^2.4.5",
