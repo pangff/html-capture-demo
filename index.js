@@ -1,9 +1,17 @@
 const Pageres = require('pageres');
-var casper = require('casper').create();
+const casper = require('casper').create();
 
 casper.start('http://m.feawin.com', function() {
-    this.captureSelector('twitter.png', '#twitter-block');
+
 });
+// listener function for requested resources
+var listener = function(resource, request) {
+    this.captureSelector('twitter.png', '#twitter-block');
+};
+
+// listening to all resources requests
+casper.on("resource.requested", listener);
+
 casper.run();
 //const filenamifyUrl = require('filenamify-url');
 //const path = require('path');
