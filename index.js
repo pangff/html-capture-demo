@@ -1,4 +1,3 @@
-const Pageres = require('pageres');
 const casper = require('casper').create();
 
 casper.start('http://m.feawin.com', function() {
