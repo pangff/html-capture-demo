@@ -7,10 +7,10 @@ casper.start('http://m.feawin.com', function() {
 var listener = function() {
 
     var _this = this;
-    setTimeout(function(){
+    this.wait(2000,function(){
         console.log("22222")
         _this.captureSelector('twitter2.png', '#twitter-block');
-    },5000);
+    });
 };
 
 // listening to all resources requests
