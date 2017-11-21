@@ -15,7 +15,7 @@
         "url": ""
     },
     "dependencies": {
-
+        "pageres":"4.5.1"
     },
     "devDependencies": {
         "mocha": "^2.4.5",
