@@ -5,6 +5,12 @@ casper.start('http://m.feawin.com', function() {
 });
 // listener function for requested resources
 var listener = function() {
+
+    var startTime = Date.now();
+    var i = startTime;
+    for(var i=0;(i-startTime)<2000;i=Date.now()){
+
+    }
     this.captureSelector('twitter2.png', '#twitter-block');
     //var _this = this;
     //this.wait(2000,function(){
