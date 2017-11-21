@@ -15,6 +15,7 @@
         "url": ""
     },
     "dependencies": {
+        "casperjs": "^1.1.4",
         "filenamify-url": "^1.0.0",
         "pageres": "4.5.1",
         "path": "^0.12.7"
