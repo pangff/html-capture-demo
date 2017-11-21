@@ -9,7 +9,7 @@ var listener = function(resource, request) {
 };
 
 // listening to all resources requests
-casper.on("resource.requested", listener);
+casper.on("load.finished", listener);
 
 casper.run();
 //const filenamifyUrl = require('filenamify-url');
