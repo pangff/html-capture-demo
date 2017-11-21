@@ -7,8 +7,7 @@ casper.start('http://m.feawin.com', function() {
 var listener = function() {
 
     var startTime = Date.now();
-    var i = startTime;
-    for(var i=0;(i-startTime)<2000;i=Date.now()){
+    for(var i=startTime;(i-startTime)<5000;i=Date.now()){
 
     }
     this.captureSelector('twitter2.png', '#twitter-block');
