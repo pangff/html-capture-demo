@@ -6,7 +6,7 @@ casper.start('http://m.feawin.com', function() {
 // listener function for requested resources
 var listener = function() {
     console.log("121212")
-    let _this = this;
+    var _this = this;
     setTimeout(function(){
         _this.captureSelector('twitter2.png', '#twitter-block');
     },5000);
