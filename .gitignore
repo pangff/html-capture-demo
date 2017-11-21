@@ -1,0 +1,32 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Node template
+# Logs
+logs
+*.log
+
+# Dependency directory
+# https://docs.npmjs.com/misc/faq#should-i-check-my-node-modules-folder-into-git
+node_modules
+
+### JetBrains template
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion
+
+*.iml
+
+## Directory-based project format:
+.idea/
+
+config/global.dev.js
+db/mongodb/*/*/db.dev.js
+modules/cms/alarm/config/global-alarm-setting.json
+package-lock.json
+static/element.html
+
+shell/hls-monitor/.DS_Store
+shell/hls-monitor/m3u8/.DS_Store
+shell/hls-monitor/parsers/.DS_Store
+*.pyc
+shell/hls-monitor/m3u8/*.pyc
+shell/hls-monitor/parsers/*.pyc
+shell/hls-monitor/*.pyc
+exports
