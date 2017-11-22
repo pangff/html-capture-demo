@@ -24,10 +24,10 @@ const plugins = [
 
 server.use(plugins);
 
-server.get('/', function(req, res, next){
+server.get('/:url', function(req, res, next){
 
     let url = req.params.url;
-    url = "https://twitter.com/Interior/status/463440424141459456";
+    //url = "https://twitter.com/Interior/status/463440424141459456";
     axios.get("https://publish.twitter.com/oembed?url="+url).then((result)=>{
         return result.data;
     }).then((result)=>{
@@ -63,8 +63,8 @@ server.get('/twitter/get', function(req, res, next){
     let url = req.params.url;
     let filename = md5(url)
     url = encodeURIComponent(url)
-    let requestUrl = filenamifyUrl("http://localhost");
-
+    let requestUrl = filenamifyUrl("http://localhost/"+url);
+    console.log(requestUrl)
     new Pageres({delay: 1})
         .src(requestUrl, ['480x320'],{selector:"#twitter-widget-0",transparent:true,filename:filename})
         .dest(path.join(__dirname,"./images"))
