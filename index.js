@@ -23,7 +23,7 @@ const plugins = [
 
 server.use(plugins);
 
-server.post('/twitter/origin', function(req, res, next){
+server.get('/twitter/origin', function(req, res, next){
 
     let url = req.params.url;
 
@@ -38,7 +38,7 @@ server.post('/twitter/origin', function(req, res, next){
     })
 })
 
-server.post('/twitter/get', function(req, res, next){
+server.get('/twitter/get', function(req, res, next){
 
     let url = req.params.url;
     let filename = md5(url)
