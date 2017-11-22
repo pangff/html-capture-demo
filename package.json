@@ -15,9 +15,12 @@
         "url": ""
     },
     "dependencies": {
+        "axios": "^0.17.1",
         "filenamify-url": "^1.0.0",
+        "md5": "^2.2.1",
         "pageres": "4.5.1",
-        "path": "^0.12.7"
+        "path": "^0.12.7",
+        "restify": "^6.3.4"
     },
     "devDependencies": {
         "mocha": "^2.4.5",
