@@ -27,7 +27,7 @@ server.get('/twitter', function(req, res, next){
 
     let url = req.params.url;
     console.log("/twitter/origin")
-    axios.get("https://publish.twitter.com/oembed",{url:url}).then((result)=>{
+    axios.get("http://publish.twitter.com/oembed",{url:url}).then((result)=>{
         return result.data;
     }).then((result)=>{
         console.log(result)
