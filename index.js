@@ -33,7 +33,7 @@ server.get('/:url', function(req, res, next){
     }).then((result)=>{
         if(result.html){
             let html = `<!DOCTYPE html>
-                        <html lang="en">
+                        <html>
                         <head>
                             <meta charset="UTF-8">
                         </head>
