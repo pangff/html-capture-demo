@@ -27,6 +27,7 @@ server.use(plugins);
 server.get('/:url', function(req, res, next){
 
     let url = req.params.url;
+    url = new Buffer(url,"base64").toString();
     //url = "https://twitter.com/Interior/status/463440424141459456";
     axios.get("https://publish.twitter.com/oembed?url="+url).then((result)=>{
         return result.data;
@@ -62,7 +63,7 @@ server.get('/twitter/get', function(req, res, next){
 
     let url = req.params.url;
     let filename = md5(url)
-    url = encodeURIComponent(url)
+    url = new Buffer(url).toString("base64");
     let requestUrl = filenamifyUrl("http://localhost/"+url);
     console.log(requestUrl)
     new Pageres({delay: 1})
