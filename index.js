@@ -71,7 +71,7 @@ server.get('/twitter/get', function(req, res, next){
         .run()
         .then(() => {
             console.log('done')
-            res.send({status:"success",imageUrl:"http://47.89.252.43/images/"+filename})
+            res.send({status:"success",imageUrl:"http://47.89.252.43/images/"+filename+".png"})
             next();
         });
 });
