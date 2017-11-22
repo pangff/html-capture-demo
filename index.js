@@ -66,7 +66,7 @@ server.get('/twitter/get', function(req, res, next){
     console.log("filename:"+filename)
     url = new Buffer(url).toString("base64");
     let requestUrl = "http://localhost/"+url;
-    new Pageres({delay: 1})
+    new Pageres({delay: 5})
         .src(requestUrl, ['480x320'],{selector:"#twitter-widget-0",transparent:true,filename:filename})
         .dest(path.join(__dirname,"./images"))
         .run()
