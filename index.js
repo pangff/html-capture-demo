@@ -6,7 +6,7 @@ const server = restify.createServer();
 const axios = require('axios');
 const md5 = require('md5');
 const Pageres = require('pageres');
-
+const filenamifyUrl = require('filenamify-url');
 const plugins = [
     restify.plugins.acceptParser(server.acceptable),
     restify.plugins.dateParser(),
@@ -44,8 +44,10 @@ server.get('/twitter/get', function(req, res, next){
     let url = req.params.url;
     let filename = md5(url)
     url = encodeURIComponent(url)
+    let requestUrl = filenamifyUrl("http://localhost/twitter/origin?url="+url);
+    console.log("requestUrl:"+requestUrl)
     new Pageres({delay: 1})
-        .src('localhost!twitter!origin!url='+url, ['480x320'],{selector:"#twitter-widget-0",transparent:true,filename:filename})
+        .src(requestUrl, ['480x320'],{selector:"#twitter-widget-0",transparent:true,filename:filename})
         .dest(__dirname)
         .run()
         .then(() => console.log('done'));
