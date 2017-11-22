@@ -24,7 +24,7 @@ const plugins = [
 
 server.use(plugins);
 
-server.get('/:url', function(req, res, next){
+server.get('/twitter/:url', function(req, res, next){
 
     let url = req.params.url;
     url = new Buffer(url,"base64").toString();
@@ -64,7 +64,7 @@ server.get('/twitter/get', function(req, res, next){
     let url = req.params.url;
     let filename = md5(url)
     url = new Buffer(url).toString("base64");
-    let requestUrl = "http://localhost/"+url;
+    let requestUrl = "http://localhost/twitter/"+url;
     console.log(requestUrl)
     new Pageres({delay: 1})
         .src(requestUrl, ['480x320'],{selector:"#twitter-widget-0",transparent:true,filename:filename})
