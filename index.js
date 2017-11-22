@@ -38,12 +38,14 @@ server.get('/', function(req, res, next){
             });
             res.write(result.html);
             res.end();
+            return next();
         }else{
             res.writeHead(200, {
                 'Content-Type': 'text/html'
             });
             res.write("");
             res.end();
+            return next();
         }
     }).catch((e)=>{
         res.writeHead(200, {
@@ -51,6 +53,7 @@ server.get('/', function(req, res, next){
         });
         res.write("");
         res.end();
+        return next();
         console.log(e)
     })
 })
@@ -68,7 +71,8 @@ server.get('/twitter/get', function(req, res, next){
         .run()
         .then(() => {
             console.log('done')
-            return {status:"success",imageUrl:"http://47.89.252.43/images/"+filename}
+            res.send({status:"success",imageUrl:"http://47.89.252.43/images/"+filename})
+            next();
         });
 });
 
