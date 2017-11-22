@@ -2,6 +2,7 @@
 'use strict';
 
 const restify = require('restify');
+const path = require('path');
 const server = restify.createServer();
 const axios = require('axios');
 const md5 = require('md5');
@@ -63,11 +64,17 @@ server.get('/twitter/get', function(req, res, next){
 
     new Pageres({delay: 1})
         .src(requestUrl, ['480x320'],{selector:"#twitter-widget-0",transparent:true,filename:filename})
-        .dest(__dirname)
+        .dest(path.join(__dirname,"./images"))
         .run()
-        .then(() => console.log('done'));
+        .then(() => {
+            console.log('done')
+            return {status:"success",imageUrl:"http://47.89.252.43/images/"+filename}
+        });
 });
 
+server.get(/\/images\/?.*/, restify.plugins.serveStatic({
+    directory: __dirname
+}));
 
 /**
  * 启动服务
