@@ -30,6 +30,7 @@ server.get('/twitter/origin', function(req, res, next){
     axios.get("https://publish.twitter.com/oembed",{url:url}).then((result)=>{
         return result.data;
     }).then((result)=>{
+        console.log(result)
         if(result.html){
             res.send(result.html)
         }else{
