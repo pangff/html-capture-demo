@@ -39,14 +39,14 @@ server.get('/:url', function(req, res, next){
                         </head>
                         <body id="body">`
             let end = `</body></html>`;
-            let result = html+result.html+end;
-            console.log(result)
+            let results = html+result.html+end;
+            console.log(results)
 
             res.writeHead(200, {
                 'Content-Type': 'text/html'
             });
 
-            res.write(result);
+            res.write(results);
             res.end();
             return next();
         }else{
