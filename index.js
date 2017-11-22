@@ -31,11 +31,7 @@ server.get('/:url', function(req, res, next){
     axios.get("https://publish.twitter.com/oembed?url="+url).then((result)=>{
         return result.data;
     }).then((result)=>{
-        console.log(result)
         if(result.html){
-            res.writeHead(200, {
-                'Content-Type': 'text/html'
-            });
             let html = `<!DOCTYPE html>
                         <html lang="en">
                         <head>
@@ -45,6 +41,11 @@ server.get('/:url', function(req, res, next){
             let end = `</body></html>`;
             let result = html+result.html+end;
             console.log(result)
+
+            res.writeHead(200, {
+                'Content-Type': 'text/html'
+            });
+
             res.write(result);
             res.end();
             return next();
