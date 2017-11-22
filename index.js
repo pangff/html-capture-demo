@@ -58,8 +58,8 @@ server.get('/twitter/get', function(req, res, next){
     let url = req.params.url;
     let filename = md5(url)
     url = encodeURIComponent(url)
-    let requestUrl = filenamifyUrl("https://localhost/twitter")+"!url="+url;
-    console.log("requestUrl:"+requestUrl)
+    let requestUrl = filenamifyUrl("http://localhost/twitter")+"!url="+url;
+
     new Pageres({delay: 1})
         .src(requestUrl, ['480x320'],{selector:"#twitter-widget-0",transparent:true,filename:filename})
         .dest(__dirname)
