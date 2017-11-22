@@ -36,7 +36,14 @@ server.get('/:url', function(req, res, next){
             res.writeHead(200, {
                 'Content-Type': 'text/html'
             });
-            res.write(result.html);
+            let html = `<!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                        </head>
+                        <body id="body">`
+            let end = `</body></html>`;
+            res.write(html+result.html+end);
             res.end();
             return next();
         }else{
