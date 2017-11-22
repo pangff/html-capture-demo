@@ -43,7 +43,9 @@ server.get('/:url', function(req, res, next){
                         </head>
                         <body id="body">`
             let end = `</body></html>`;
-            res.write(html+result.html+end);
+            let result = html+result.html+end;
+            console.log(result)
+            res.write(result);
             res.end();
             return next();
         }else{
