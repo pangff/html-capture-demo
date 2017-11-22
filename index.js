@@ -26,18 +26,29 @@ server.use(plugins);
 server.get('/twitter', function(req, res, next){
 
     let url = req.params.url;
-    console.log("/twitter/origin:"+url)
-    axios.get("http://publish.twitter.com/oembed?url="+url).then((result)=>{
+    axios.get("https://publish.twitter.com/oembed?url="+url).then((result)=>{
         return result.data;
     }).then((result)=>{
         console.log(result)
         if(result.html){
-            res.send(result.html)
+            res.writeHead(200, {
+                'Content-Type': 'text/html'
+            });
+            res.write(result.html);
+            res.end();
         }else{
-            res.send("")
+            res.writeHead(200, {
+                'Content-Type': 'text/html'
+            });
+            res.write("");
+            res.end();
         }
     }).catch((e)=>{
-        res.send("")
+        res.writeHead(200, {
+            'Content-Type': 'text/html'
+        });
+        res.write("");
+        res.end();
         console.log(e)
     })
 })
