@@ -85,7 +85,7 @@ server.get('/twitter/get', function(req, res, next){
         .dest(path.join(__dirname,"./images"))
         .run()).then((result)=>{
         if(result){
-            result[0].twitterImgUrl = "http://47.88.33.47/images/"+filename+".png"
+            result[0].twitterImgUrl = "images/"+filename+".png"
             result[0].status = "success";
             res.send(result[0])
             return next();
