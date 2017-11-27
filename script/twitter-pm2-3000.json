@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name": "twitter-80",
+      "name": "twitter-3000",
       "out_file": "/data/nodejs/logs/twitter-80/pm2-out.log",
       "error_file": "/data/nodejs/logs/twitter-80/pm2-err.log",
       "script": "index.js",
