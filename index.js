@@ -1,6 +1,6 @@
 
 'use strict';
-
+const errors = require('restify-errors');
 const restify = require('restify');
 const path = require('path');
 const server = restify.createServer();
@@ -68,6 +68,7 @@ server.get('/:url', function(req, res, next){
     })
 })
 
+
 server.get('/twitter/get', function(req, res, next){
 
     let url = req.params.url;
@@ -76,15 +77,25 @@ server.get('/twitter/get', function(req, res, next){
     console.log("filename:"+filename)
     url = new Buffer(url).toString("base64");
     let requestUrl = "http://localhost/"+url;
-    new Pageres({delay: 5})
+
+    Promise.all(axios.get("https://publish.twitter.com/oembed?url="+url).then((result)=>{
+        return result.data;
+    }),new Pageres({delay: 5})
         .src(requestUrl, ['480x320'],{selector:"#twitter-widget-0",transparent:true,filename:filename})
         .dest(path.join(__dirname,"./images"))
-        .run()
-        .then(() => {
-            console.log('done')
-            res.send({status:"success",imageUrl:"http://47.89.252.43/images/"+filename+".png"})
-            next();
-        });
+        .run()).then((result)=>{
+        if(result){
+            result[0].twitterImgUrl = "http://47.88.33.47/images/"+filename+".png"
+            result[0].status = "success";
+            res.send(result[0])
+            return next();
+        }else{
+            return next(new errors.InternalServerError("result null"));
+        }
+    }).catch((e)=>{
+        console.error(e)
+        return next(new errors.InternalServerError(e));
+    })
 });
 
 server.get(/\/images\/?.*/, restify.plugins.serveStatic({
