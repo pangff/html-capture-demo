@@ -105,6 +105,6 @@ server.get(/\/images\/?.*/, restify.plugins.serveStatic({
 /**
  * 启动服务
  */
-server.listen("80", function() {
+server.listen("3000", function() {
     console.log('%s listening at %s', server.name, server.url);
 });
