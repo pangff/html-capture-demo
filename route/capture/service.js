@@ -117,6 +117,7 @@ CaptureService.getEebeddedContent=(url)=>{
                         <body id="body">`
                 let end = `</body></html>`;
                 let results = html+result.html+end;
+                console.log("twitter-result:",results)
                 return results;
             }else{
                 return "";
