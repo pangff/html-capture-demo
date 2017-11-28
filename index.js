@@ -152,7 +152,7 @@ server.get('/twitter/get', function(req, res, next){
     }else{
         console.log("requestUrl:",requestUrl)
         return new Pageres({delay: 5})
-            .src(requestUrl, ['480x320'],{selector:captureTag,transparent:true,filename:filename})
+            .src(requestUrl, ['480x320'],{transparent:true,filename:filename})
             .dest(path.join(__dirname,"./images"))
             .run().then((result)=>{
             if(result){
