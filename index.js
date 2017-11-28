@@ -32,7 +32,7 @@ server.get('/:url', function(req, res, next){
 
     let url = req.params.url;
     url = new Buffer(url,"base64").toString();
-
+    console.log("request:",url)
     const myURL = new URL(url);
 
     if(myURL.host=="www.facebook.com"){
@@ -122,7 +122,7 @@ server.get('/twitter/get', function(req, res, next){
         captureTag = "#plc_main";
         requestUrl = url;
     }else if(myURL.host=="www.facebook.com"){
-        captureTag = "div._1dwg._1w_m._q7o";
+        captureTag = "#myContent";
         let urlBase64 = new Buffer(url).toString("base64");
         requestUrl= "http://localhost/"+urlBase64;
     }else{
