@@ -36,7 +36,7 @@ server.get('/:url', function(req, res, next){
     const myURL = new URL(url);
 
     if(myURL.host=="www.facebook.com"){
-        let html = `<html><title>My Website</title><body>
+        let html = `<html><title>My Website</title><body><script src="//connect.facebook.net/en_US/sdk.js#xfbml=1&amp;version=v2.5" async></script>
                     <div id="myContent" class="fb-post"
                     data-href="https://www.facebook.com/20531316728/posts/10154009990506729/"
                     data-width="500"></div> </body> </html>`;
@@ -150,6 +150,7 @@ server.get('/twitter/get', function(req, res, next){
             return next(new errors.InternalServerError(e));
         })
     }else{
+        console.log("requestUrl:",requestUrl)
         return new Pageres({delay: 5})
             .src(requestUrl, ['480x320'],{transparent:true,filename:filename})
             .dest(path.join(__dirname,"./images"))
