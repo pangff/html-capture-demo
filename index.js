@@ -41,7 +41,7 @@ server.get('/:url', function(req, res, next){
                     <body>
                     <script src="//connect.facebook.net/en_US/sdk.js#xfbml=1&amp;version=v2.5"
                     async></script>
-                    <div class="fb-post"
+                    <div id="myContent" class="fb-post"
                     data-href="https://www.facebook.com/20531316728/posts/10154009990506729/"
                     data-width="500"></div>
                         </body>
@@ -126,7 +126,7 @@ server.get('/twitter/get', function(req, res, next){
         let urlBase64 = new Buffer(url).toString("base64");
         requestUrl= "http://localhost/"+urlBase64;
     }else{
-        captureTag = "._1dwg _1w_m _q7o";
+        captureTag = "#myContent";
         requestUrl = url;
     }
 
