@@ -22,7 +22,7 @@ const fs = require('fs');
  */
 CaptureService.checkPlatform=(url)=>{
     const myURL = new URL(url);
-    if(myURL.host=="twitter.com"||myURL.host=="www.twitter.com"){
+    if(myURL.host=="twitter.com"||myURL.host=="www.twitter.com"||myURL.host=="publish.twitter.com"){
         return TYPE_TWITTER;
     }else if(myURL.host=="www.facebook.com"||myURL.host=="facebook.com"){
         return TYPE_FACEBOOK;
