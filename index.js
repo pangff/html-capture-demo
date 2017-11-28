@@ -93,7 +93,7 @@ server.get('/twitter/get', function(req, res, next){
         requestUrl = "http://localhost/"+urlBase64;
         captureTag="#twitter-widget-0"
     }else if(myURL.host=="weibo.com"){
-        captureTag = ".WB_feed_detail";
+        captureTag = "#plc_main";
         requestUrl = url;
     }else if(myURL.host=="www.facebook.com"){
         captureTag = "._1dwg _1w_m _q7o";
