@@ -15,6 +15,7 @@ const TYPE_FACEBOOK = "facebook";
 const TYPE_WEIBO = "weibo";
 const TYPE_CHINA_NET = "chinaNet";
 const TYPE_OTHERS = "others";
+const fs = require('fs');
 /**
  * 判断平台类型
  * @param url
