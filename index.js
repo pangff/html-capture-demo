@@ -77,8 +77,8 @@ server.get('/:url', function(req, res, next){
 
 
 server.get('/twitter/get', function(req, res, next){
+    let url = new Buffer(req.params.url,"base64").toString();
 
-    let url = req.params.url;
     console.log("url:"+url)
 
     const myURL = new URL(url);
