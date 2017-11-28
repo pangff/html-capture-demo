@@ -49,7 +49,7 @@ server.get('/:url', function(req, res, next){
         res.writeHead(200, {
             'Content-Type': 'text/html'
         });
-        res.write(results);
+        res.write(html);
         res.end();
         return next();
     }else{
