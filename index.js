@@ -28,7 +28,7 @@ const plugins = [
 
 server.use(plugins);
 
-server.get('/:url', function(req, res, next){
+server.get('/content/:url', function(req, res, next){
 
     let url = req.params.url;
     url = new Buffer(url,"base64").toString();
@@ -36,7 +36,10 @@ server.get('/:url', function(req, res, next){
     const myURL = new URL(url);
 
     if(myURL.host=="www.facebook.com"){
-        let html = `<html><title>My Website</title></html>`;
+        let html = `<html><title>My Website</title><body><script src="http://connect.facebook.net/en_US/sdk.js#xfbml=1&amp;version=v2.5" async></script>
+                    <div id="myContent" class="fb-post"
+                    data-href="https://www.facebook.com/20531316728/posts/10154009990506729/"
+                    data-width="500"></div> </body> </html>`;
         res.writeHead(200, {
             'Content-Type': 'text/html'
         });
@@ -106,7 +109,7 @@ server.get('/twitter/get', function(req, res, next){
         isTwritter = true;
         url = "https://publish.twitter.com/oembed?url="+url;
         let urlBase64 = new Buffer(url).toString("base64");
-        requestUrl = "http://localhost/"+urlBase64;
+        requestUrl = "http://localhost/content/"+urlBase64;
         captureTag="#twitter-widget-0"
     }else if(myURL.host=="www.weibo.com"){
 
@@ -116,7 +119,7 @@ server.get('/twitter/get', function(req, res, next){
         captureTag = "#myContent";
         let urlBase64 = new Buffer(url).toString("base64");
         console.log("urlBase64:",urlBase64)
-        requestUrl= "http://localhost/"+urlBase64;
+        requestUrl= "http://localhost/content/"+urlBase64;
     }else{
         captureTag = "#myContent";
         requestUrl = url;
