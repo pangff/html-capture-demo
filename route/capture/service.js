@@ -137,7 +137,6 @@ const doCapture=(info)=>{
 }
 
 CaptureService.getHtmlOrCaptureInfo=(url)=>{
-    url = new Buffer(url,"base64").toString();
     let type = CaptureService.checkPlatform(url);
     let info = CaptureService.getPlatformInfo(url);
 

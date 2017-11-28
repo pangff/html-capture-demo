@@ -17,7 +17,7 @@ const routes = [];
 routes.push({
     meta: {
         name: 'quoteGET',
-        method: 'GET',
+        method: 'POST',
         paths: [
             '/quote/get'
         ],
