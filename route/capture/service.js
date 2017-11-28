@@ -103,7 +103,7 @@ CaptureService.getEebeddedContent=(url)=>{
                     <div id="myContent" class="fb-post"
                     data-href="${url}"
                     data-width="500"></div> </body> </html>`;
-        return Pormise.resolve(html);
+        return Promise.resolve(html);
     }else if(type==TYPE_TWITTER){
         return axios.get(url).then((result)=>{
             return result.data;
