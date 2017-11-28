@@ -97,6 +97,7 @@ CaptureService.getPlatformInfo=(url)=>{
 CaptureService.getEebeddedContent=(url)=>{
     url = new Buffer(url,"base64").toString();
     let type = CaptureService.checkPlatform(url);
+    console.log("type:",type)
     if(type==TYPE_FACEBOOK){
         let html = `<html><title>Website</title><body><script src="http://connect.facebook.net/en_US/sdk.js#xfbml=1&amp;version=v2.5" async></script>
                     <div id="myContent" class="fb-post"
