@@ -118,7 +118,7 @@ server.get('/twitter/get', function(req, res, next){
             .dest(path.join(__dirname,"./images"))
             .run()]).then((result)=>{
             if(result){
-                result[0].twitterImgUrl = "images/"+filename+".png"
+                result[0].imgUrl = "images/"+filename+".png"
                 result[0].status = "success";
                 res.send(result[0])
                 return next();
@@ -135,9 +135,9 @@ server.get('/twitter/get', function(req, res, next){
             .dest(path.join(__dirname,"./images"))
             .run().then((result)=>{
             if(result){
-                result[0].twitterImgUrl = "images/"+filename+".png"
-                result[0].status = "success";
-                res.send(result[0])
+                result.imgUrl = "images/"+filename+".png"
+                result.status = "success";
+                res.send(result)
                 return next();
             }else{
                 return next(new errors.InternalServerError("result null"));
