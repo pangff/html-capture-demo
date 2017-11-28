@@ -105,7 +105,7 @@ server.get('/twitter/get', function(req, res, next){
         requestUrl = url;
     }
 
-
+    console.log("captureTag",captureTag)
     let filename = md5(url)
     console.log("filename:"+filename)
 
