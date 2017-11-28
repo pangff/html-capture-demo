@@ -111,10 +111,11 @@ server.get('/twitter/get', function(req, res, next){
         let urlBase64 = new Buffer(url).toString("base64");
         requestUrl = "http://localhost/content/"+urlBase64;
         captureTag="#twitter-widget-0"
-    }else if(myURL.host=="www.weibo.com"){
-
-        captureTag = "#plc_main";
-        requestUrl = url;
+    }else if(myURL.host=="weibo.com"||myURL.host=="www.weibo.com"||myURL.host=="m.weibo.com"){
+        captureTag = "div.card.m-panel.card9";
+        let paths = myURL.pathname.split("/");
+        let id = paths[paths.length-1];
+        requestUrl = "https://m.weibo.cn/status/"+id;
     }else if(myURL.host=="www.facebook.com"){
         captureTag = "#myContent";
         let urlBase64 = new Buffer(url).toString("base64");
@@ -133,7 +134,7 @@ server.get('/twitter/get', function(req, res, next){
     if(isTwritter){
         Promise.all([axios.get(url).then((result)=>{
             return result.data;
-        }),new Pageres({delay: 5})
+        }),new Pageres({delay: 2})
             .src(requestUrl, ['480x320'],{selector:captureTag,transparent:true,filename:filename})
             .dest(path.join(__dirname,"./images"))
             .run()]).then((result)=>{
@@ -151,8 +152,8 @@ server.get('/twitter/get', function(req, res, next){
         })
     }else{
         console.log("requestUrl:",requestUrl)
-        return new Pageres({delay: 5})
-            .src(requestUrl, ['480x320'],{transparent:true,filename:filename})
+        return new Pageres({delay: 2})
+            .src(requestUrl, ['480x320'],{selector:captureTag,transparent:true,filename:filename})
             .dest(path.join(__dirname,"./images"))
             .run().then((result)=>{
             if(result){
