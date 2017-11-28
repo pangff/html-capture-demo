@@ -98,7 +98,7 @@ server.get('/twitter/get', function(req, res, next){
         captureTag = "#plc_main";
         requestUrl = url;
     }else if(myURL.host=="www.facebook.com"){
-        captureTag = "._1dwg _1w_m _q7o";
+        captureTag = "div._1dwg _1w_m._q7o";
         requestUrl = url;
     }else{
         captureTag = "._1dwg _1w_m _q7o";
