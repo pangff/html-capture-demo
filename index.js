@@ -36,10 +36,7 @@ server.get('/:url', function(req, res, next){
     const myURL = new URL(url);
 
     if(myURL.host=="www.facebook.com"){
-        let html = `<html><title>My Website</title><body><script src="http://connect.facebook.net/en_US/sdk.js#xfbml=1&amp;version=v2.5" async></script>
-                    <div id="myContent" class="fb-post"
-                    data-href="https://www.facebook.com/20531316728/posts/10154009990506729/"
-                    data-width="500"></div> </body> </html>`;
+        let html = `<html><title>My Website</title></html>`;
         res.writeHead(200, {
             'Content-Type': 'text/html'
         });
