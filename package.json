@@ -16,10 +16,14 @@
     },
     "dependencies": {
         "axios": "^0.17.1",
+        "cheerio": "^1.0.0-rc.2",
         "filenamify-url": "^1.0.0",
+        "fs": "0.0.1-security",
         "md5": "^2.2.1",
         "pageres": "4.5.1",
         "path": "^0.12.7",
+        "request": "^2.83.0",
+        "request-promise": "^4.2.2",
         "restify": "^6.3.4"
     },
     "devDependencies": {
