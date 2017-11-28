@@ -78,12 +78,12 @@ server.get('/twitter/get', function(req, res, next){
     let urlBase64 = new Buffer(url).toString("base64");
     let requestUrl = "http://localhost/"+urlBase64;
 
-    Promise.all(axios.get("https://publish.twitter.com/oembed?url="+url).then((result)=>{
+    Promise.all([axios.get("https://publish.twitter.com/oembed?url="+url).then((result)=>{
         return result.data;
     }),new Pageres({delay: 5})
         .src(requestUrl, ['480x320'],{selector:"#twitter-widget-0",transparent:true,filename:filename})
         .dest(path.join(__dirname,"./images"))
-        .run()).then((result)=>{
+        .run()]).then((result)=>{
         if(result){
             result[0].twitterImgUrl = "images/"+filename+".png"
             result[0].status = "success";
