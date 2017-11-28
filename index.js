@@ -86,6 +86,7 @@ server.get('/twitter/get', function(req, res, next){
     let captureTag = "";
     let requestUrl = "";
     let isTwritter = false;
+    console.log("host",myURL.host)
     if(myURL.host=="twitter.com"){
         isTwritter = true;
         url = "https://publish.twitter.com/oembed?url="+url;
@@ -93,6 +94,7 @@ server.get('/twitter/get', function(req, res, next){
         requestUrl = "http://localhost/"+urlBase64;
         captureTag="#twitter-widget-0"
     }else if(myURL.host=="weibo.com"){
+
         captureTag = "#plc_main";
         requestUrl = url;
     }else if(myURL.host=="www.facebook.com"){
