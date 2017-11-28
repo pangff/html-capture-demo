@@ -144,6 +144,7 @@ CaptureService.getHtmlOrCaptureInfo=(url)=>{
 
     if(type==TYPE_TWITTER){
         url = "https://publish.twitter.com/oembed?url="+url;
+        console.log("twitter-url:",url)
         return Promise.all([axios.get(url).then((result)=>{
             return result.data;
         }),doCapture(info)]).then((result)=>{
