@@ -93,7 +93,7 @@ server.get('/twitter/get', function(req, res, next){
         let urlBase64 = new Buffer(url).toString("base64");
         requestUrl = "http://localhost/"+urlBase64;
         captureTag="#twitter-widget-0"
-    }else if(myURL.host=="weibo.com"){
+    }else if(myURL.host=="www.weibo.com"){
 
         captureTag = "#plc_main";
         requestUrl = url;
