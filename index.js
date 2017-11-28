@@ -75,8 +75,8 @@ server.get('/twitter/get', function(req, res, next){
     console.log("url:"+url)
     let filename = md5(url)
     console.log("filename:"+filename)
-    url = new Buffer(url).toString("base64");
-    let requestUrl = "http://localhost/"+url;
+    let urlBase64 = new Buffer(url).toString("base64");
+    let requestUrl = "http://localhost/"+urlbase64;
 
     Promise.all(axios.get("https://publish.twitter.com/oembed?url="+url).then((result)=>{
         return result.data;
