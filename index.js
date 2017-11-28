@@ -113,7 +113,7 @@ server.get('/twitter/get', function(req, res, next){
     if(isTwritter){
         Promise.all([axios.get(url).then((result)=>{
             return result.data;
-        }),new Pageres({delay: 2})
+        }),new Pageres({delay: 5})
             .src(requestUrl, ['480x320'],{selector:captureTag,transparent:true,filename:filename})
             .dest(path.join(__dirname,"./images"))
             .run()]).then((result)=>{
