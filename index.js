@@ -8,6 +8,10 @@ const axios = require('axios');
 const md5 = require('md5');
 const Pageres = require('pageres');
 const filenamifyUrl = require('filenamify-url');
+
+const { URL } = require('url');
+
+
 const plugins = [
     restify.plugins.acceptParser(server.acceptable),
     restify.plugins.dateParser(),
@@ -27,8 +31,11 @@ server.use(plugins);
 server.get('/:url', function(req, res, next){
 
     let url = req.params.url;
+
+
+
     url = new Buffer(url,"base64").toString();
-    axios.get("https://publish.twitter.com/oembed?url="+url).then((result)=>{
+    axios.get(url).then((result)=>{
         return result.data;
     }).then((result)=>{
         if(result.html){
@@ -73,29 +80,72 @@ server.get('/twitter/get', function(req, res, next){
 
     let url = req.params.url;
     console.log("url:"+url)
+
+    const myURL = new URL(url);
+
+    let captureTag = "";
+    let requestUrl = "";
+    let isTwritter = false;
+    if(myURL.host=="twitter.com"){
+        isTwritter = true;
+        url = "https://publish.twitter.com/oembed?url="+url;
+        let urlBase64 = new Buffer(url).toString("base64");
+        requestUrl = "http://localhost/"+urlBase64;
+        captureTag="#twitter-widget-0"
+    }else if(myURL.host=="weibo.com"){
+        captureTag = ".WB_feed_detail";
+        requestUrl = url;
+    }else if(myURL.host=="www.facebook.com"){
+        captureTag = "._1dwg _1w_m _q7o";
+        requestUrl = url;
+    }else{
+        captureTag = "._1dwg _1w_m _q7o";
+        requestUrl = url;
+    }
+
+
     let filename = md5(url)
     console.log("filename:"+filename)
-    let urlBase64 = new Buffer(url).toString("base64");
-    let requestUrl = "http://localhost/"+urlBase64;
 
-    Promise.all([axios.get("https://publish.twitter.com/oembed?url="+url).then((result)=>{
-        return result.data;
-    }),new Pageres({delay: 5})
-        .src(requestUrl, ['480x320'],{selector:"#twitter-widget-0",transparent:true,filename:filename})
-        .dest(path.join(__dirname,"./images"))
-        .run()]).then((result)=>{
-        if(result){
-            result[0].twitterImgUrl = "images/"+filename+".png"
-            result[0].status = "success";
-            res.send(result[0])
-            return next();
-        }else{
-            return next(new errors.InternalServerError("result null"));
-        }
-    }).catch((e)=>{
-        console.error(e)
-        return next(new errors.InternalServerError(e));
-    })
+
+    if(isTwritter){
+        Promise.all([axios.get(url).then((result)=>{
+            return result.data;
+        }),new Pageres({delay: 2})
+            .src(requestUrl, ['480x320'],{selector:captureTag,transparent:true,filename:filename})
+            .dest(path.join(__dirname,"./images"))
+            .run()]).then((result)=>{
+            if(result){
+                result[0].twitterImgUrl = "images/"+filename+".png"
+                result[0].status = "success";
+                res.send(result[0])
+                return next();
+            }else{
+                return next(new errors.InternalServerError("result null"));
+            }
+        }).catch((e)=>{
+            console.error(e)
+            return next(new errors.InternalServerError(e));
+        })
+    }else{
+        return new Pageres({delay: 2})
+            .src(requestUrl, ['480x320'],{selector:captureTag,transparent:true,filename:filename})
+            .dest(path.join(__dirname,"./images"))
+            .run().then((result)=>{
+            if(result){
+                result[0].twitterImgUrl = "images/"+filename+".png"
+                result[0].status = "success";
+                res.send(result[0])
+                return next();
+            }else{
+                return next(new errors.InternalServerError("result null"));
+            }
+        }).catch((e)=>{
+            console.error(e)
+            return next(new errors.InternalServerError(e));
+        })
+    }
+
 });
 
 server.get(/\/images\/?.*/, restify.plugins.serveStatic({
