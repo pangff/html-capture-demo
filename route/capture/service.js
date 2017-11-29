@@ -53,6 +53,7 @@ CaptureService.getPlatformInfo=(url)=>{
             requestUrl : "http://localhost/content/"+urlBase64,
             captureTag: "#twitter-widget-0",
             filename:filename,
+            type:type,
             quoteTitle:"twitter"
         }
     }else if(type==TYPE_FACEBOOK){
@@ -61,6 +62,7 @@ CaptureService.getPlatformInfo=(url)=>{
             requestUrl : "http://localhost/content/"+urlBase64,
             captureTag: "#myContent",
             filename:filename,
+            type:type,
             quoteTitle:"facebook"
         }
     }else if(type==TYPE_WEIBO){
@@ -70,24 +72,28 @@ CaptureService.getPlatformInfo=(url)=>{
             requestUrl : "https://m.weibo.cn/status/"+id,
             captureTag: "div.card.m-panel.card9",
             filename:filename,
+            type:type,
             quoteTitle:"新浪微博"
         }
     }else if(type==TYPE_CHINA_NET){
         return {
             requestUrl : url,
             captureTag: "",
+            type:type,
             quoteTitle:"中国网"
         }
     }else if(type==TYPE_CHINA_NET){
         return {
             requestUrl : url,
             captureTag: "",
+            type:type,
             quoteTitle:""
         }
     }else{
         return {
             requestUrl : url,
             captureTag: "",
+            type:type,
             quoteTitle:""
         }
     }
