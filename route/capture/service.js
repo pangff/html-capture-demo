@@ -158,7 +158,7 @@ CaptureService.getHtmlOrCaptureInfo=(url)=>{
             if(result){
                 return {
                     status:"success",
-                    imgUrl: "images/"+info.filename+".png",
+                    imgUrl: "http://47.88.33.47/images/"+info.filename+".png",
                     info:info,
                     data:result[0]
                 }
@@ -172,7 +172,7 @@ CaptureService.getHtmlOrCaptureInfo=(url)=>{
                     return {
                         status:"success",
                         info:info,
-                        imgUrl: "images/"+info.filename+".png"
+                        imgUrl: "http://47.88.33.47/images/"+info.filename+".png"
                     }
                 }else{
                     return Promise.reject("result null");
