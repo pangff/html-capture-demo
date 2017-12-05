@@ -192,7 +192,7 @@ CaptureService.getHtmlOrCaptureInfo=(url)=>{
         var options = {
             uri: url,
             transform: function (body) {
-                return cheerio.load(body);
+                return cheerio.load(body, {decodeEntities: false});
             }
         };
 
