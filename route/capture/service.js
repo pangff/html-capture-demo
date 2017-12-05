@@ -16,6 +16,7 @@ const TYPE_WEIBO = "weibo";
 const TYPE_CHINA_NET = "chinaNet";
 const TYPE_OTHERS = "others";
 const fs = require('fs');
+const sizeOf = require('image-size');
 /**
  * 判断平台类型
  * @param url
@@ -136,12 +137,18 @@ CaptureService.getEebeddedContent=(url)=>{
 
 const doCapture=(info)=>{
     if(info.filename && fs.existsSync(path.join(__dirname,"../../images"+info.filename))){
-        return Promise.resolve(info.filename);
+        return Promise.resolve(info.filename).then((result)=>{
+            let dimensions = sizeOf(path.join(__dirname,"../../images"));
+            return dimensions
+        });
     }else{
         return new Pageres({delay: 2})
             .src(info.requestUrl, ['480x320'],{selector:info.captureTag,transparent:true,filename:info.filename})
             .dest(path.join(__dirname,"../../images"))
-            .run()
+            .run().then((result)=>{
+                let dimensions = sizeOf(path.join(__dirname,"../../images"));
+                return dimensions
+            });
     }
 }
 
@@ -160,6 +167,8 @@ CaptureService.getHtmlOrCaptureInfo=(url)=>{
                     status:"success",
                     imgUrl: "http://47.88.33.47/images/"+info.filename+".png",
                     info:info,
+                    imgWidth:result.width,
+                    imgHeight:result.height,
                     data:result[0]
                 }
             }else{
@@ -172,6 +181,8 @@ CaptureService.getHtmlOrCaptureInfo=(url)=>{
                     return {
                         status:"success",
                         info:info,
+                        imgWidth:result.width,
+                        imgHeight:result.height,
                         imgUrl: "http://47.88.33.47/images/"+info.filename+".png"
                     }
                 }else{
