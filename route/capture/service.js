@@ -194,7 +194,7 @@ CaptureService.getHtmlOrCaptureInfo=(url)=>{
             uri: url,
             encoding: null,
             transform: function (body) {
-                let html = iconv.decode(body, 'utf-8')
+                let html = iconv.decode(body, 'gb2312')
                 return cheerio.load(html, {decodeEntities: false});
             }
         };
