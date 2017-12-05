@@ -30,6 +30,7 @@ routes.push({
         let url = req.params.url;
         return service.getHtmlOrCaptureInfo(url).then((r)=>{
             console.log(r)
+            res.charSet('utf-8');
             res.send(r);
             return next();
         }).catch((error)=>{
