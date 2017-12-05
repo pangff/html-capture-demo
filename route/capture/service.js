@@ -192,6 +192,7 @@ CaptureService.getHtmlOrCaptureInfo=(url)=>{
     }else if(type==TYPE_CHINA_NET || type==TYPE_OTHERS){
         var options = {
             uri: url,
+            gzip:true,
             transform: function (body) {
                 let html = iconv.decode(body, 'utf-8')
                 return cheerio.load(html, {decodeEntities: false});

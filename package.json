@@ -19,7 +19,6 @@
         "cheerio": "^1.0.0-rc.2",
         "filenamify-url": "^1.0.0",
         "fs": "0.0.1-security",
-        "iconv": "^2.3.0",
         "image-size": "^0.6.1",
         "md5": "^2.2.1",
         "pageres": "4.5.1",
