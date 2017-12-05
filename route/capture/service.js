@@ -194,7 +194,19 @@ CaptureService.getHtmlOrCaptureInfo=(url)=>{
             uri: url,
             encoding: null,
             transform: function (body) {
-                let html = iconv.decode(body, 'gb2312')
+                var charset = "utf-8";
+                var arr = body.match(/<meta([^>]*?)>/g);
+                if (arr) {
+                    arr.forEach(function (val) {
+                        var match = val.match(/charset\s*=\s*(.+)\"/);
+                        if (match && match[1]) {
+                            if (match[1].substr(0, 1) == '"')match[1] = match[1].substr(1);
+                            charset = match[1].trim();
+                        }
+                    })
+                }
+
+                let html = iconv.decode(body,charset)
                 return cheerio.load(html, {decodeEntities: false});
             }
         };
