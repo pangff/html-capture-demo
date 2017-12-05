@@ -138,7 +138,7 @@ CaptureService.getEebeddedContent=(url)=>{
 const doCapture=(info)=>{
     if(info.filename && fs.existsSync(path.join(__dirname,"../../images"+info.filename))){
         return Promise.resolve(info.filename).then((result)=>{
-            let dimensions = sizeOf(path.join(__dirname,"../../images"));
+            let dimensions = sizeOf(path.join(__dirname,"../../images"+info.filename));
             return dimensions
         });
     }else{
@@ -146,7 +146,7 @@ const doCapture=(info)=>{
             .src(info.requestUrl, ['480x320'],{selector:info.captureTag,transparent:true,filename:info.filename})
             .dest(path.join(__dirname,"../../images"))
             .run().then((result)=>{
-                let dimensions = sizeOf(path.join(__dirname,"../../images"));
+                let dimensions = sizeOf(path.join(__dirname,"../../images"+info.filename));
                 return dimensions
             });
     }
