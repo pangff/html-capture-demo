@@ -167,8 +167,8 @@ CaptureService.getHtmlOrCaptureInfo=(url)=>{
                     status:"success",
                     imgUrl: "http://47.88.33.47/images/"+info.filename+".png",
                     info:info,
-                    imgWidth:result.width,
-                    imgHeight:result.height,
+                    imgWidth:result[0].width,
+                    imgHeight:result[0].height,
                     data:result[0]
                 }
             }else{
