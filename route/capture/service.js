@@ -18,7 +18,7 @@ const TYPE_OTHERS = "others";
 const fs = require('fs');
 const { promisify } = require('util');
 const sizeOf = promisify(require('image-size'));
-const iconv = require('iconv-lite')
+const iconv = require('/usr/lib/node_modules/iconv-lite')
 /**
  * 判断平台类型
  * @param url
