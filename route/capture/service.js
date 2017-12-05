@@ -195,7 +195,7 @@ CaptureService.getHtmlOrCaptureInfo=(url)=>{
             encoding: null,
             transform: function (body) {
                 var charset = "utf-8";
-                var arr = body.match(/<meta([^>]*?)>/g);
+                var arr = (body+"").match(/<meta([^>]*?)>/g);
                 if (arr) {
                     arr.forEach(function (val) {
                         var match = val.match(/charset\s*=\s*(.+)\"/);
