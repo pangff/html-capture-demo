@@ -18,6 +18,7 @@ const TYPE_OTHERS = "others";
 const fs = require('fs');
 const { promisify } = require('util');
 const sizeOf = promisify(require('image-size'));
+const iconv = require('iconv-lite')
 /**
  * 判断平台类型
  * @param url
@@ -192,7 +193,8 @@ CaptureService.getHtmlOrCaptureInfo=(url)=>{
         var options = {
             uri: url,
             transform: function (body) {
-                return cheerio.load(body, {decodeEntities: false});
+                let html = iconv.decode(body, 'utf-8')
+                return cheerio.load(html, {decodeEntities: false});
             }
         };
 
