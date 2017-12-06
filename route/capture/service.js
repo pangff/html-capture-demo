@@ -29,9 +29,14 @@ CaptureService.checkPlatform=(url)=>{
         return TYPE_TWITTER;
     }else if(myURL.host=="www.facebook.com"||myURL.host=="facebook.com"){
         return TYPE_FACEBOOK;
-    }else if(myURL.host=="weibo.com"||myURL.host=="www.weibo.com"||myURL.host=="m.weibo.com"){
+    }else if(myURL.host=="weibo.com"
+        ||myURL.host=="www.weibo.com"
+        ||myURL.host=="m.weibo.com"
+        ||myURL.host=="m.weibo.cn"){
         return TYPE_WEIBO;
     }else if(myURL.host=="wx.china.cn"
+        ||myURL.host=="guoqing.china.com.cn"
+        ||myURL.host=="photo.china.com.cn"
         ||myURL.host=="m.china.com.cn"
         ||myURL.host=="news.china.com.cn"
         ||myURL.host=="www.china.org.cn"){
@@ -213,7 +218,7 @@ CaptureService.getHtmlOrCaptureInfo=(url)=>{
 
         return rp(options).then(($)=>{
             let title = $("title").text()
-            let images = $("img").map(function() {
+            let images = $("body.img").map(function() {
                 return $(this).attr("src");
             }).get()
             let imgUrl = "";
