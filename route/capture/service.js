@@ -188,7 +188,7 @@ CaptureService.getHtmlOrCaptureInfo=(url)=>{
                         info:info,
                         imgWidth:result.width,
                         imgHeight:result.height,
-                        imgUrl: "http://47.88.33.47/images/"+info.filename+".png"
+                        imgUrl: "http://k.m.china.com.cn/quote/images/"+info.filename+".png"
                     }
                 }else{
                     return Promise.reject("result null");
