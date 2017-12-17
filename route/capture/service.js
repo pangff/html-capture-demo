@@ -170,7 +170,7 @@ CaptureService.getHtmlOrCaptureInfo=(url)=>{
             if(result){
                 return {
                     status:"success",
-                    imgUrl: "http://47.88.33.47/images/"+info.filename+".png",
+                    imgUrl: "http://k.m.china.com.cn/quote/images/"+info.filename+".png",
                     info:info,
                     imgWidth:result[1].width,
                     imgHeight:result[1].height,
