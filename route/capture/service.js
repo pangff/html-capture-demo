@@ -218,7 +218,7 @@ CaptureService.getHtmlOrCaptureInfo=(url)=>{
 
         return rp(options).then(($)=>{
             let title = $("title").text()
-            let images = $("body").children("img").map(function() {
+            let images = $("img").map(function() {
                 return $(this).attr("src");
             }).get()
             let imgUrl = "";
