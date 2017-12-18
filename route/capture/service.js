@@ -218,13 +218,16 @@ CaptureService.getHtmlOrCaptureInfo=(url)=>{
 
         return rp(options).then(($)=>{
             let title = $("title").text()
-            let images = $("img").map(function() {
-                return $(this).attr("src");
-            }).get()
+            let images = []
+
+            //$("img").map(function() {
+            //    return $(this).attr("src");
+            //}).get()
             let imgUrl = "";
-            if(images && images.length>0){
-                imgUrl = images[0]
-            }else if(type==TYPE_CHINA_NET){
+            //if(images && images.length>0){
+            //    imgUrl = images[0]
+            //}else
+            if(type==TYPE_CHINA_NET){
                 imgUrl = "http://m.china.com.cn/images/app/appicon.png";
             }
             return {
